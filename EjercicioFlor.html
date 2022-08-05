@@ -9,36 +9,57 @@
 <body>
     <canvas width="600" height="400"></canvas>
     <script>
-    var pantalla = document.querySelector("canvas");
-    var pincel = pantalla.getContext("2d");
-    pincel.fillStyle = "lightgray";
-    pincel.fillRect(0, 0, 600, 400);
+   
+     function dibujaRectangulo(x, y, rWidth, rHeight, color){
+     var pantalla = document.querySelector("canvas");
+     var pincel = pantalla.getContext("2d");
 
-    function dibujarCirculo(x, y, radio, color) {
+     pincel.fillStyle = color;
+     pincel.fillRect(x, y, rWidth, rHeight);
+     pincel.strokeStyle = "black"
+     pincel.strokeRect(x, y, rWidth, rWidth) 
 
-        pincel.fillStyle = color;
-        pincel.beginPath();
-        pincel.arc(x, y, radio, 0, 2*3.14);
-        pincel.fill();
+    }
+    
+    function escribeTexto(x, y , texto){
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+    
+        pincel.font = "15px Georgia";
+        pincel.fillStyle = "black";
+        pincel.fillText(texto, x, y);
     }
 
- 
+    //En un array guardamos los valors que deseamos graficar
+    var serie2009 = [6, 47, 41, 3, 3];      //6% Chrome, 47% Firefox, 41% Internet Explorer/Edge*, 3% Safari, 3% Otros.
+    var serie2019 = [81, 9, 3, 3, 4];       //81% Chrome, 9% Firefox, 3% Internet Explorer/Edge*, 3% Safari, 4% Otros. 
 
-    function dibujarFlor(x, y, r){
-        dibujarCirculo(x-2*r , y, r, "brown")
-        dibujarCirculo(x, y, r, "red")
-        dibujarCirculo(x+2*r, y, r, "black")
-        dibujarCirculo(x, y-2*r, r, "yellow")
-        dibujarCirculo(x, y+2*r, r, "blue")
-    }
-dibujarFlor(50, 80, 10);
-dibujarFlor(300, 200, 5);
-dibujarFlor(100, 67,1);
-dibujarFlor(30, 300, 5);
-dibujarFlor(120, 230, 5);
-dibujarFlor(290, 340, 5);
-
+    //Array con los colores que utilizaremos en los gráficos
+    var colores = ["blue","green","yellow", "red","gray"];
+    
+    function dibujaBarra(x, y, serie, colores, texto){
         
+        escribeTexto(x, y - 10, texto);
+
+        var sumaAltura = 0
+        for (var i = 0; i < serie.length; i++){
+
+        var altura = serie[i];
+        
+        dibujaRectangulo(x , y + sumaAltura, 50, altura, colores[i])
+        sumaAltura = sumaAltura + altura;
+        //console.log(posicion)
+        console.log(altura)
+
+        }
+
+    }
+    var colores = ["blue","green","yellow", "red","gray"];
+    var serie2009 = [6,47,41,3,3];
+    var serie2019 = [81,9,3,3,4];
+
+    dibujaBarra(50, 50 , serie2009, colores, "2009");
+    dibujarBarra(150, 50, serie2019, colores, "2019");
 
     </script>
 </body>
