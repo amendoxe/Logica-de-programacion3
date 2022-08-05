@@ -21,15 +21,23 @@
             pincel.strokeRect(x, y, 50, 50);
         }
 
-        var x = 0
-        while( x < 600 ){
+        // var x = 0
+        // while( x < 600 ){
+        //     dibujaCuadro(x, 0, "red");
+        //     dibujaCuadro(x, 50, "yellow");
+        //     dibujaCuadro(x, 100, "green");
+
+        //     x = x + 50
+        // }
+            //ahora con for
+
+        
+        for(var x = 0; x < 600; x= x + 50){
             dibujaCuadro(x, 0, "red");
             dibujaCuadro(x, 50, "yellow");
             dibujaCuadro(x, 100, "green");
 
-            x = x + 50
         }
-
 
 
         
