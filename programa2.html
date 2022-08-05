@@ -21,9 +21,16 @@
             pincel.strokeRect(x, y, 50, 50);
         }
 
-        dibujaCuadro(0, 0, "green");
-        dibujaCuadro(0, 50, "green");
-        dibujaCuadro(0, 100, "green");
+        var x = 0
+        while( x < 600 ){
+            dibujaCuadro(x, 0, "red");
+            dibujaCuadro(x, 50, "yellow");
+            dibujaCuadro(x, 100, "green");
+
+            x = x + 50
+        }
+
+
 
         
 
