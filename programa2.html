@@ -9,29 +9,23 @@
 <body>
     <canvas width="600" height="400"></canvas>
     <script>
-        var pantalla = document.querySelector("canvas");
-        var pincel = pantalla.getContext("2d");
+        function dibujaCuadro (x, y, color){
 
-        pincel.fillStyle = "lightgrey";
-        pincel.fillRect(0, 0, 600, 400);
-        pincel.fillStyle = "Green";       //Propiedad
-        pincel.fillRect(0, 0, 200, 400); //función
+            var pantalla = document.querySelector("canvas");
+            var pincel = pantalla.getContext("2d");
 
-        pincel.fillStyle= "red";
-        pincel.fillRect( 400, 0, 200, 400);
+            pincel.fillStyle = color
+            pincel.fillRect(x, y, 50, 50)
+            
+            pincel.strokeStyle = "black";
+            pincel.strokeRect(x, y, 50, 50);
+        }
 
-        pincel.fillStyle = "brown";
-        pincel.beginPath();
-        pincel.moveTo(300,200); 
-        pincel.lineTo(200, 400);
-        pincel.lineTo(400, 400);
-        pincel.fill();
+        dibujaCuadro(0, 0, "green");
+        dibujaCuadro(0, 50, "green");
+        dibujaCuadro(0, 100, "green");
 
-        pincel.fillStyle = "green"
-        pincel.beginPath();
-        pincel.arc(300, 200, 50, 0, 2*3.14)
-        pincel.fill();
-
+        
 
     </script>
 </body>
