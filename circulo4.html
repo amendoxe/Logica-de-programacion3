@@ -15,7 +15,7 @@
 
         pincel.fillStyle="gray"
         pincel.fillRect(0, 0, 600, 400)
-        var color = "blue"
+        var color = ["blue", "red", "green"]
         var clics = 0
 
 
@@ -28,7 +28,7 @@
             var y = evento.pageY - pantalla.offsetTop
             console.log(x + "," + y)
 
-            pincel.fillStyle = color;
+            pincel.fillStyle = color[clics];
             pincel.beginPath();
             pincel.arc(x,y,10,0,2*3.1416)
             pincel.fill();
@@ -36,19 +36,12 @@
         pantalla.onclick = dibujaCirculo;
 
         function alterarColor(){
-            var colores = ["red", "green", "blue"]
-            color = colores[clics]
+         
             clics ++;
             if (clics > 2){
                 clics = 0
             }
-            // while(clics < colores.length){
-            //     color = colores[clics];
-            //     clics++;
-            // }
-
-            //alert("Funciona la función derecha")
-            return false;
+            return false; // to avoid menu display
 
         }
         pantalla.oncontextmenu = alterarColor;
