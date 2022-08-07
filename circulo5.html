@@ -12,15 +12,16 @@
 
         var pantalla = document.querySelector("canvas");
         var pincel = pantalla.getContext("2d");
+        
 
         pincel.fillStyle="gray"
         pincel.fillRect(0, 0, 600, 400)
-        var color = ["blue", "red", "green"]
         var clics = 0
+        var radio = 10
 
-        function dibujaCirculo(x, y, radio){
+        function dibujaCirculo(x, y, radio, color){
             
-            pincel.fillStyle = "yellow"
+            pincel.fillStyle = color
             pincel.beginPath();
             pincel.arc(x, y, radio, 0, 2*Math.PI)
             pincel.fill();
@@ -30,26 +31,30 @@
         function cleanScreen(){
             pincel.clearRect(0, 0, 600, 400)
         }
-        
-        var x = 0
-        sentido = 1
-        function animacion (){
-            cleanScreen();
-        
-            if(x>600){
-                
-            sentido = -1
-            }
-            else if(x< 0 ){
-                sentido = 1
-            }
-            dibujaCirculo(x, 100, 30)
-            x= x + sentido*2
+        xAleatorio = ranGenx();
+        console.log("x "+ xAleatorio)
+        yAleatorio = ranGeny();
+        console.log("y "+ yAleatorio)
 
+
+
+
+     
+
+        function ranGenx(){
+            return Math.floor(Math.random()*(560-40)+40)
         }
-        setInterval (animacion, 10 )
+        function ranGeny(){
+            return Math.floor(Math.random()*(360-40)+40)
+        }
 
+        function target(x,y){
+            dibujaCirculo(x, y, radio + 20, "red")
+            dibujaCirculo(x, y, radio + 10, "white")
+            dibujaCirculo(x, y, radio, "red")
+        }
         
+        target(ranGenx(), ranGeny());
 
     </script>
 </body>
