@@ -18,34 +18,23 @@
         var color = ["blue", "red", "green"]
         var clics = 0
 
-
-        function clickIzquierdo(evento){
-            console.log(evento)
-            alert("Qué onda amigo")
-        }
-        function dibujaCirculo(evento){
-            var x = evento.pageX - pantalla.offsetLeft
-            var y = evento.pageY - pantalla.offsetTop
-            console.log(x + "," + y)
-
-            pincel.fillStyle = color[clics];
+        function dibujaCirculo(x, y, radio){
+            
+            pincel.fillStyle = "yellow"
             pincel.beginPath();
-            pincel.arc(x,y,10,0,2*3.1416)
+            pincel.arc(x, y, radio, 0, 2*Math.PI)
             pincel.fill();
         }
-        pantalla.onclick = dibujaCirculo;
 
-        function alterarColor(){
-         
-            clics ++;
-            if (clics > 2){
-                clics = 0
-            }
-            return false; // to avoid menu display
+        dibujaCirculo(20, 20 , 20);
+        dibujaCirculo(120, 29 , 90);
+        dibujaCirculo(80, 200 , 40);
 
+        function cleanScreen(){
+            pincel.clearRect(0, 0, 600, 400)
         }
-        pantalla.oncontextmenu = alterarColor;
-
+        cleanScreen();
+        
     </script>
 </body>
 </html>
