@@ -12,7 +12,8 @@
 
         var pantalla = document.querySelector("canvas");
         var pincel = pantalla.getContext("2d");
-        
+        var xAleatorio;
+        var yAleatorio;
 
         pincel.fillStyle="gray"
         pincel.fillRect(0, 0, 600, 400)
@@ -31,30 +32,54 @@
         function cleanScreen(){
             pincel.clearRect(0, 0, 600, 400)
         }
-        xAleatorio = ranGenx();
-        console.log("x "+ xAleatorio)
-        yAleatorio = ranGeny();
-        console.log("y "+ yAleatorio)
 
-
-
-
-     
 
         function ranGenx(){
             return Math.floor(Math.random()*(560-40)+40)
+
         }
         function ranGeny(){
-            return Math.floor(Math.random()*(360-40)+40)
+            return           Math.floor(Math.random()*(360-40)+40)
+
         }
 
-        function target(x,y){
+        function dibujaTarget(x,y){
             dibujaCirculo(x, y, radio + 20, "red")
             dibujaCirculo(x, y, radio + 10, "white")
             dibujaCirculo(x, y, radio, "red")
         }
         
-        target(ranGenx(), ranGeny());
+
+        function actualizarPantalla(){
+            cleanScreen()
+            xAleatorio = ranGenx();
+            console.log("x " + xAleatorio)
+            yAleatorio = ranGeny();
+            console.log("y " + yAleatorio)
+
+            dibujaTarget(xAleatorio, yAleatorio);
+            
+        }
+
+        function disparar(evento){
+            var x = evento.pageX - pantalla.offsetLeft
+            console.log("tirox " + x)
+            var y = evento.pageY - pantalla.offsetTop
+            console.log("tiroY " + y)
+
+
+            if((x < xAleatorio + radio) &&
+            (x > xAleatorio - radio) &&
+            (y < yAleatorio + radio) &&
+            (y > yAleatorio - radio)){
+                alert("Tiro certero!, Padrino")
+
+            }
+
+        }
+        pantalla.onclick = disparar;
+        actualizarPantalla()
+        setInterval(actualizarPantalla, 1000)
 
     </script>
 </body>
