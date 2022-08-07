@@ -26,15 +26,25 @@
             pincel.fill();
         }
 
-        dibujaCirculo(20, 20 , 20);
-        dibujaCirculo(120, 29 , 90);
-        dibujaCirculo(80, 200 , 40);
 
         function cleanScreen(){
             pincel.clearRect(0, 0, 600, 400)
         }
-        cleanScreen();
         
+        var x = 0
+        function animacion (){
+            cleanScreen();
+            dibujaCirculo(x, 100, 30)
+            x+=20
+            if(x>600){
+                x = 0
+            }
+        }
+
+        setInterval (animacion, 100 )
+
+        
+
     </script>
 </body>
 </html>
